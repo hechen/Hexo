@@ -7,11 +7,20 @@ node_js:
   - 10.12.0
 
 before_install:
-  - npm install -g hexo-cli
+  - npm install
+  - npm install -g hexo
 
 # Start: Build Lifecycle
 install:
-  - npm install
+  - npm install hexo-generator-index --save
+  - npm install hexo-generator-archive --save
+  - npm install hexo-generator-category --save #分类生成器
+  - npm install hexo-generator-tag --save #标签生成器
+  - npm install hexo-server --save #本地服务
+  - npm install hexo-deployer-git --save #hexo通过git发布（必装）
+  - npm install hexo-renderer-marked@0.2.7--save #渲染器
+  - npm install hexo-renderer-stylus@0.3.0 --save #渲染器
+  - npm install hexo-renderer-jade hexo-renderer-stylus
   - npm install hexo-deployer-git --save
 
 # 执行清缓存，生成网页操作
