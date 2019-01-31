@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>819C52A4EE7109825266D40DD7FE9A2A</key>
+	<array>
+		<dict>
+			<key>localURL</key>
+			<string>media/modular-workspace.png</string>
+			<key>remoteURL</key>
+			<string>https://i.imgur.com/wGXI5fy.png</string>
+		</dict>
+		<dict>
+			<key>localURL</key>
+			<string>media/modular-linking.png</string>
+			<key>remoteURL</key>
+			<string>https://i.imgur.com/qKHdwhp.png</string>
+		</dict>
+		<dict>
+			<key>localURL</key>
+			<string>media/modular-dependencies.png</string>
+			<key>remoteURL</key>
+			<string>https://i.imgur.com/TrXKUTJ.png</string>
+		</dict>
+		<dict>
+			<key>localURL</key>
+			<string>media/apple-touch-icon-144x144.png</string>
+			<key>remoteURL</key>
+			<string>https://i.imgur.com/yYLLsbQ.png</string>
+		</dict>
+		<dict>
+			<key>localURL</key>
+			<string>media/modular-cocoapods.png</string>
+			<key>remoteURL</key>
+			<string>https://i.imgur.com/UARMUhl.png</string>
+		</dict>
+		<dict>
+			<key>localURL</key>
+			<string>media/9146792.png</string>
+			<key>remoteURL</key>
+			<string>https://i.imgur.com/IUXCxhQ.png</string>
+		</dict>
+		<dict>
+			<key>localURL</key>
+			<string>media/modular-carthage.png</string>
+			<key>remoteURL</key>
+			<string>https://i.imgur.com/HXqtoDl.png</string>
+		</dict>
+	</array>
+	<key>selectedItem</key>
+	<string>819C52A4EE7109825266D40DD7FE9A2A</string>
+</dict>
+</plist>

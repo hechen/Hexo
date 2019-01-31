@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>00205BC984A426554E921A710C680037</key>
+	<array>
+		<dict>
+			<key>localURL</key>
+			<string>media/Wallpaper_Wizard_2.jpg</string>
+			<key>remoteURL</key>
+			<string>http://7xilk1.com1.z0.glb.clouddn.com/2018-07-14-Wallpaper_Wizard_2.jpg</string>
+		</dict>
+	</array>
+	<key>819C52A4EE7109825266D40DD7FE9A2A</key>
+	<array>
+		<dict>
+			<key>localURL</key>
+			<string>media/Capto_Capture%202018-10-07_05-38-04_PM-1.png</string>
+			<key>remoteURL</key>
+			<string>https://i.imgur.com/CNc6AIK.png</string>
+		</dict>
+	</array>
+	<key>selectedItem</key>
+	<string>819C52A4EE7109825266D40DD7FE9A2A</string>
+</dict>
+</plist>
