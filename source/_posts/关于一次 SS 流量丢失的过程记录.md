@@ -50,7 +50,13 @@ categories: Mac
 1. safebrowsing.googleapis.com 
 2. safebrowsing.urlsec.qq.com
 
-我们出问题的就是 google 提供的欺诈网站特征库。
+其实在 iOS 设备上也有同样的进程来做这件事情，抓包有时候也能捕捉到这两个请求（国行）：
+
+
+![iPhone 上的 Safebrowsing](https://i.imgur.com/g9JCPdU.jpg)
+
+
+而这次出问题的就是 google 提供的欺诈网站特征库。
 
 ![Little Snitch Network Monitor](https://i.imgur.com/BtfvMIV.png)
 
