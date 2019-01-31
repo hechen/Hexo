@@ -72,4 +72,5 @@ categories: Mac
 
 另一方面，因为不放心，在 Surge 的自定义规则中加了一条：
 	NAME,com.apple.Safari.SafeBrowsing.Service,DIRECT
+	
 针对该进程的所有流量都直连，不用代理了。 后续有任何进展会更新到 Blog 中。
