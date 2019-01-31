@@ -80,5 +80,5 @@ theme: melody
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/hechen/hechen.github.io
+  repo: https://gh_token@github.com/hechen/hechen.github.io
   branch: master
