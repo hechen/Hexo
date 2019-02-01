@@ -22,8 +22,7 @@ tags: [iOS,Animation,Objective-C]
 
 **Vitaly**设计的topBar动画由我们的iOS开发工程师**Maksym Lazebnyi**使用`swift`语言实现，并且开发者给了它一个很有趣的名字—— **Guillotine Menu**。
 
-![Guillotine Menu Animation](https://yalantis.com/media/content/ckeditor/2015/04/14/activitytopmenu_vKfwzSX.gif)
-
+![Guillotine Menu Animation](https://i.imgur.com/Q2GueMC.gif)
 
 ----------
 
@@ -47,6 +46,7 @@ tags: [iOS,Animation,Objective-C]
 接下来，我们逐一对每一个类进行阐述。
      
 #### GuillotineMenuSegue
+
 这个类中没有什么特别的地方，我只提及一些关键点。
 
 在该类重载的init方法中，我们检查目标视图控制器（destination view controller）是否遵守`GuillotineAnimationProtocol` 协议（该协议我们后面会讲到）。在重载的perform方法中我们将self设置成一个过渡动画的代理。
@@ -72,7 +72,7 @@ tags: [iOS,Animation,Objective-C]
 
 - transitionDuration  动画的过渡时间对我们影响不是太多，因此你可以返回任意的时间值。 
 
-- animationDurtation 当菜单开启和关闭均会调用该方法
+- animationDuration 当菜单开启和关闭均会调用该方法
 
 
 ----------
@@ -153,7 +153,6 @@ tags: [iOS,Animation,Objective-C]
 
 * [GitHub](https://github.com/Yalantis/GuillotineMenu)
 * [Dribbble](https://dribbble.com/shots/2018249-Side-Topbar-Animation)
-
 
 >译者注：Objective-C 版本实现可以参见[GuillotineMenu-objc](https://github.com/hechen/GuillotineMenu-objc)
 
