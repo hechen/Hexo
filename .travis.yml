@@ -1,23 +1,30 @@
 # 指定语言环境
 language: node_js
+
 # 指定需要sudo权限
 sudo: required
-# 指定node_js版本
+
+# 指定node_js版本，目前指定和自己本机的版本号一致
 node_js: 
   - 10.12.0
+
+# Cache node modules
+cache:
+  directories:
+    - node_modules
 
 before_install:
   - npm install
   - npm install -g hexo
 
-# Start: Build Lifecycle
+# 确保安装所有 Hexo 所需要的功能插件
 install:
   - npm install hexo-generator-index --save
   - npm install hexo-generator-archive --save
-  - npm install hexo-generator-category --save #分类生成器
-  - npm install hexo-generator-tag --save #标签生成器
-  - npm install hexo-server --save #本地服务
-  - npm install hexo-deployer-git --save #hexo通过git发布（必装）
+  - npm install hexo-generator-category --save
+  - npm install hexo-generator-tag --save
+  - npm install hexo-server --save
+  - npm install hexo-deployer-git --save
 
 # 执行清缓存，生成网页操作
 script:
