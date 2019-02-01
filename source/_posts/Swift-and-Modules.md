@@ -317,9 +317,7 @@ module Resolv [system] {
 
 而且通过将 module map 文件放置于 product 产出目录这里也解决了路径指定的问题，因为 product folder 是默认在编译的搜索路径下的。
 
-### 问题解惑
 
-#### 关于某些
 
 ## 总结
 
