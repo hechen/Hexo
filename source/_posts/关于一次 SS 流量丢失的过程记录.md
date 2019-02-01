@@ -50,7 +50,13 @@ categories: Mac
 1. safebrowsing.googleapis.com 
 2. safebrowsing.urlsec.qq.com
 
-我们出问题的就是 google 提供的欺诈网站特征库。
+其实在 iOS 设备上也有同样的进程来做这件事情，抓包有时候也能捕捉到这两个请求（国行）：
+
+
+![iPhone 上的 Safebrowsing](https://i.imgur.com/g9JCPdU.jpg)
+
+
+而这次出问题的就是 google 提供的欺诈网站特征库。
 
 ![Little Snitch Network Monitor](https://i.imgur.com/BtfvMIV.png)
 
@@ -72,4 +78,5 @@ categories: Mac
 
 另一方面，因为不放心，在 Surge 的自定义规则中加了一条：
 	NAME,com.apple.Safari.SafeBrowsing.Service,DIRECT
+	
 针对该进程的所有流量都直连，不用代理了。 后续有任何进展会更新到 Blog 中。
