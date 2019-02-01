@@ -2,12 +2,10 @@
 title: 在 Swift Framework 中使用 C 文件的过程探索
 date: 2019-01-03 21:19:24
 tags: Swift, Module, CocoaPods
-category: iOS
+category: Swift
 top_img: https://i.imgur.com/NJi1fs6.jpg
 ---
 
-
-Swift 真香！
 
 ## 问题描述
 
@@ -26,7 +24,7 @@ Swift 真香！
     Include of non-modular header inside framework module 'Diagnosis.ZHDiagnosisTool_Network_Header': '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.1.sdk/usr/include/resolv.h'
 ```
 
-大概的意思就是在 Umbrella Header 中加入的 Briding header 指定了 include 一个 C 文件，而该 C 文件本身并不是  Modular Header， 因此编译无法通过。这就涉及了目前 iOS 生态中普遍使用的 Modules 概念。
+大概的意思就是在 Umbrella Header 中加入的 Bridging header 指定了 include 一个 C 文件，而该 C 文件本身并不是  Modular Header， 因此编译无法通过。这就涉及了目前 iOS 生态中普遍使用的 Modules 概念。
 
 ## 几个概念
 
@@ -36,7 +34,9 @@ Modules 的概念是 XCode 5 带到 iOS 开发者面前的，从那时起 LLVM �
 
 > Modules 是被引入 LLVM 层面的，用以解决之前 C/C++ 系中 #include 和 #import 带来的引用泛滥以及编译时间过长的问题的一种手段。
 
-尤其是在 Swift 引入之后，Module 的概念应该已经深入人心。大家可能已经习惯直接使用 @import 来引用某个 Module，或者其中某个逻辑单元。尤其是使用 CocoaPods 集成开发的时候，其也帮你底层做了一些 Modules 的工作， module 的属性是由定义它的 `.modulemap` 文件来决定的，在 Pods 的工程目录结构中充斥着 `.modulemap` 的身影，其语法大概如下：
+尤其是在 Swift 引入之后，Module 的概念应该已经深入人心。大家可能已经习惯直接使用 @import 来引用某个 Module，或者其中某个功能单元。尤其是使用 CocoaPods 集成开发的时候，其内部实际上也是做了一些 module 的工作，在 Pods 目录中充斥着 `.modulemap` 的身影，想必大家经常看到。
+
+而 一个 module 的属性是由定义它的 `.modulemap` 文件来决定的，其简单语法大概如下：
 
 ``` Shell
 module module_name [system] {
@@ -50,7 +50,7 @@ module module_name [system] {
 
 ### Umbrella Header
 
-说起来，Umbrella Header 是在 Framework 的概念被引入的，你可以理解为一个模块均存在一个 Umbrella Header 用来将那些你想暴露给模块外界调用的头文件包裹在一起。避免使用者在使用该模块的时候需要手动输入多个 Header 的一种解决方案。 iOS 中特指 iOS 8 系统官方加入 Dynamic Framework 之后引入的。
+说起来，Umbrella Header 是在 Framework 的概念被引入的，你可以理解为一个模块均存在一个 Umbrella Header 用来将那些你想暴露给模块外界调用的头文件包裹在一起。避免使用者在使用该模块的时候需要手动输入多个 Header 的一种解决方案。 其实 Mac 端很早就有这个概念，iOS 中特指 iOS 8 开始官方加入 Dynamic Framework 以后的概念。
 
 如下所示，没有 Umbrella Header 的情况下你需要将所有需要引入的头文件依次写出。
 
@@ -66,9 +66,9 @@ module module_name [system] {
 ```
 当然，还存在 umbrella framework，感兴趣大家可以到[官方文档](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPFrameworks/Concepts/FrameworkAnatomy.html#//apple_ref/doc/uid/20002253-97623-BAJJHAJC)下观看。
 
-- Bridging-Header
+### Bridging-Header
 
-桥接文件是在 Swift 推出之后，Apple 引入目前iOS 生态的一个概念用以桥接 Swift 和 Objective-C 的一种方式 （Mix and Match），如下图所示，如果在 Swift 中想使用 Objective-C 类定义的内容，就需要建立 Bridging Header，然后在其中定义你想要暴露的 OC 头文件。
+桥接文件是在 Swift 推出之后，Apple 引入iOS 生态的用以桥接 Swift 和 Objective-C 相互调用的一种方式 （Mix and Match），如下图所示，如果在 Swift 中想使用 Objective-C 类定义的内容，就需要建立 Bridging Header，然后在其中定义你想要暴露的 OC 头文件。
 
 ![Bridging Header](https://i.imgur.com/YwqHEKJ.png)
 
@@ -78,7 +78,7 @@ module module_name [system] {
 
 ### Cocoapods
 
-我们每次执行 `pod install` 的时候，如果你使用 —verbose 来看详细安装过程就能看到，针对每一个将要被安装的 Pod 均会执行生成 module map 和 umbrella header 这两个阶段，如下所示部分 Install 指令的代码，代码位于 `lib/cocoapods/installer/xcode/pods_project_generator/aggregate_target_installer.rb` 
+我们每次执行 `pod install` 的时候，如果你使用 `—verbose` 来看详细安装过程就能看到，针对每一个将要被安装的 Pod 均会执行生成 module map 和 umbrella header 这两个阶段，如下所示部分 Install 指令的代码，代码位于 `lib/cocoapods/installer/xcode/pods_project_generator/aggregate_target_installer.rb` 
 
     
 ```ruby
@@ -115,7 +115,7 @@ def install!
 
 ## 问题原因
 
-首先先解答：为什么 Example 工程能够编译通过 而用了主工程是无法编译通过？
+首先解答：为什么 Example 工程能够编译通过 而用了主工程是无法编译通过？
 
 因为目前主工程都要求我们自行开发的 pod 以动态 framework 的形式参与，但是在 Example 工程开发的时候我们的 `podfile` 并未指定 `use_frameworks!` 用以产出动态 framework，因此未暴露出该问题，也就是说只有以 framework 的形式的 module 才会有该问题，准确的说，应该是 `Dynamic Framework`
 
@@ -129,10 +129,9 @@ def install!
 
 首先，能否允许编译器支持在 module 中引入非 modular 的头文件呢？ 
 
-Xcode 在 build setting 中提供了  `Allow Non-modular Includes In Framework Modules` 来控制是否允许在当前 framework 中支持非 modular 头文件引入，其并不适用于纯 Swift 项目，而且即使适用，其会导致所有用到该 framework 的地方也不能再适用 module 形式引入头文件了，也就是必须适用平坦式的 `#include ""`
+Xcode 在 build setting 中提供了  `Allow Non-modular Includes In Framework Modules` 来控制是否允许在当前 framework 中支持非 modular 头文件引入，其并不适用于纯 Swift 项目，而且即使适用，其会导致所有用到该 framework 的大的编译单元都不能再使用 module 形式引入头文件了，也就是必须适用平坦式的 `#include ""` 形式。
 
 ![Build Setting](https://i.imgur.com/S4i2chx.png)
-
 
 最后，通过只能从根源上来解决该问题了，既然需要引入的文件是 modular header，我们就要想办法来将其包裹为 module。 在查找解决方案的过程中发现，就在 Swift 刚推出的时候，大家已经遇到这个问题了，遇到最多的就是`CommonCrypto` 经常被使用到的 C 库，常见的 MD5 计算就是其提供的 API，但是在前几年官方并未将该动态库 module 化，因此导致你无法在 Swift 文件中直接使用类似 `#import <CommonCrypto/CommonCrypto.h>` 这种写法。自然而言多了很多解决方案，如下出自 StackOverflow 上 [Importing CommonCrypto in a Swift framework](https://stackoverflow.com/questions/25248598/importing-commoncrypto-in-a-swift-framework/37125785#37125785) 的帖子下面就提供了多种解决方案：
 
@@ -225,7 +224,7 @@ module Darwin [system] [extern_c] [no_undeclared_includes] {
 ```
 这也是为什么我们在 Swift 代码里可以直接使用类似 `import Darwin.C.stdio` 写法的原因。但是还是存在一些 C 库并没有被定义为 module，而本次用来做 DNS 解析的 `resolv.h` 就是其中一员。
 
-具体到我们开发流程里说，是要解决 modulemap 如何定义，如何和我们目前使用的 Cocoapods 整合的问题了。既然是在作为 Pod 进行开发，自然是需要将 module map 文件加入到 pod 的代码管理中去。比如将其放置于单个 pod 根目录下，然后在 podspec 中配置好路径以便编译的时候 Swift Search Paths 中有它。自然，我们可以建立 resolv.modulemap 如下：
+具体到我们解决思路里来看就是要解决 modulemap 如何定义，如何和我们目前使用的 cocoapods 整合的问题了。既然是在作为 pod 进行开发，自然是需要将 module map 文件加入到 pod 的代码管理中去。比如将其放置于单个 pod 根目录下，然后在 podspec 中配置好路径以便编译的时候 Swift Search Paths 中有它。自然，我们可以建立 resolv.modulemap 如下：
 
 
 ```shell 
@@ -324,7 +323,7 @@ module Resolv [system] {
 
 ## 总结
 
-总结来看，就是想要在纯 Swift 的项目中引入系统 C 库文件（这里指的是未被 modular 化的文件，因为有些 C 文件已经被系统默认封装成了 module 了）。以上只是一些简单的概念讲解，整个编译系统以及套件都是长时间不断演化的结果，这里也只是简单的讲述，有一些概念实际上也只是点到为止，大家如果感兴趣可以多找一些相关资料阅读下，亲自试一试。当然，当然刚开始直接用 Objective-C 来写不就好了，确实，不过通过本次解决这个问题，对 iOS 开发过程中遇到的某些司空见惯的概念（充斥在整个开发周期中）有了更清楚的了解，不是更好。
+总结来看，就是想要在纯 Swift 的项目中引入系统 C 库文件（这里指的是未被 modular 化的文件，因为有些 C 文件已经被系统默认封装成了 module 了）。以上只是一些简单的概念讲解，整个编译系统以及套件都是长时间不断演化的结果，这里也只是简单的讲述，有一些概念实际上也只是点到为止，大家如果感兴趣可以多找一些相关资料阅读下，亲自试一试。
 
 ## 参考资料
 
