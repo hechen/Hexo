@@ -1,7 +1,7 @@
 ---
 title: What is LLVM
 date: 2018-07-10 12:05:58
-top_img: http://7xilk1.com1.z0.glb.clouddn.com/2018-07-13-cw_scary_tech_12-100740223-large.jpg
+top_img: https://i.imgur.com/ShTaH8L.jpg
 categories: 翻译
 tags: [LLVM,Compiler,Swfit,IR]
 ---
@@ -28,7 +28,7 @@ LLVM 最核心的功能就是，可以通过编码方式创造机器原生代码
 
 很多编程语言中很常见的结构体或者模式，LLVM 的 API 都提供了原始语义的支持。例如，几乎所有的语言都有函数或者全局变量的概念，LLVM 在其 IR 中把函数和全局变量作为独立元素定义出来，因此你不需要花太多时间和精力来重复造这些特定的轮子，你只需要使用 LLVM 的实现，专注于你的语言最需要关注的地方即可。
 
-![一个 LLVM 的 IR 的例证. 右侧是一个简单的 C 程序; 左侧是同样的代码被 Clang 编译器翻译成的 LLVM IR](http://7xilk1.com1.z0.glb.clouddn.com/2018-07-13-direct.jpeg)
+![一个 LLVM 的 IR 的例证. 右侧是一个简单的 C 程序; 左侧是同样的代码被 Clang 编译器翻译成的 LLVM IR](https://i.imgur.com/xIbW9gq.jpg)
 
 
 ## LLVM: 专为移植性而设计
@@ -51,8 +51,7 @@ LLVM 最核心的功能就是，可以通过编码方式创造机器原生代码
 
 其他的语言还有用非传统方式把 LLVM 作为 JIT 来实验的语言，比如 [JIT-Compiling SQL Queries in PostgreSQL Using LLVM](https://www.pgcon.org/2017/schedule/events/1092.en.html)，能够达到高达 5 倍的性能提升。
 
-![Numba 使用 LLVM 即时编译其数值代码从而加速其执行速度。JIT 加速的 sum2d 函数完成执行比使用常规 Python 代码的实现快大约 139 倍](http://7xilk1.com1.z0.glb.clouddn.com/2018-07-13-numba-llvm-100747598-large.jpg)
-
+![Numba 使用 LLVM 即时编译其数值代码从而加速其执行速度。JIT 加速的 sum2d 函数完成执行比使用常规 Python 代码的实现快大约 139 倍](https://i.imgur.com/viRT3KE.jpg)
 
 
 ### 利用 LLVM 进行自动化的代码优化
