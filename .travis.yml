@@ -8,10 +8,8 @@ sudo: required
 node_js: 
   - 10.12.0
 
-# Cache node modules
-cache:
-  directories:
-    - node_modules
+# This caches $HOME/.npm or node_modules, depending on the repository’s structure.
+cache: npm
 
 before_install:
   - npm install
@@ -41,5 +39,5 @@ after_script:
   
   
   
-  notifications:
+notifications:
   slack: chensworkspace:0iUM9QJqC1dzq27bJ9Fw87pn
