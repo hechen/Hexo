@@ -37,14 +37,5 @@ after_script:
   - sed -i "s/gh_token/${GH_TOKEN}/g" ./_config.yml
   - hexo deploy
   
-  
-  
 notifications:
-  slack: 
-    channels:
-      - chensworkspace:0iUM9QJqC1dzq27bJ9Fw87pn
-    on_success: change 
-    on_failure: always
-  template:
-      - "🎉🎉🎉 Blog Deploy Done! %{repository_slug} (%{commit}) : %{message}, Result: ${result} "
-      - "Build details: %{build_url}"
+  slack: chensworkspace:0iUM9QJqC1dzq27bJ9Fw87pn

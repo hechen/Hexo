@@ -67,16 +67,13 @@ tags: DEVONThink, MarginNote, PDFExpert
 ![MarginNote Note Group](https://i.imgur.com/kIvn6v8.png)
 
 
-
 我单独在 MarginNote 里建了一个 Folder ，叫 Article。专门阅读我从 DEVONthink 中采集到的文章。阅读完毕，还可以将阅读笔记归档，MarginNote 支持分享到 印象笔记，Word 或者 DEVONthink 进行归档。
-
 
 ![Export](https://i.imgur.com/yyQ3pOr.png)
 
 
-到了这里，基本上对我来讲一个 输入 ── 处理 ── 阅读 ── 输出 的整个流程就结束了。
+到了这里，基本上对我来讲一个 输入 ── 处理 ── 阅读 ── 输出 的整个流程就结束了，基本上是一个闭环。
 
 上面提到的三个工具，均有 iOS 版本，也就意味着即使拿着手机也能够不破坏整个阅读环节，不过其中 DEVONthink 提供的 iOS 版本是没办法进行 WebArchive 向 PDF 的转换的，处理这一步最后还是得放在 Mac 端处理，不过解决了输入和输出也就意味着随时随地可以捕获想看的内容放到稍后读列表，然后自动同步到 Mac 端进行处理，然后在 MarginNote 对应的 iOS 版本，平时在家的时候还是习惯用 iPad Pro 查看，体验也不错。
 
 ![iPad MarginNote](https://i.imgur.com/ZJsdxyS.jpg)
-
